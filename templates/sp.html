@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block title %}ServiceProviders{% endblock title %}
+{% block body %}
+{% for sp in object_list%}
+{{sp}}
+<a href="{% url 'sppdf' sp.pk%}" class="btn btn-danger" target="_blank">Pdf</a>
+<br>
+<hr>
+{% endfor %}
+{% endblock body %}

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>{{job.jobReferenceNumber}}</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        
+        {%load static%}
+        <h5> Invoice Number: {{job.jobReferenceNumber}}</h5>
+        <hr>
+        <table border="0" cellspacing="0">
+            <tr><td><b>Job Title</b></td><td>:</td><td>{{job.jobTitle}}</td></tr>
+            <tr><td><b>Summary</b></td><td>:</td><td>{{job.jobDescription}}</td></tr>
+            <tr><td><b>Created</b></td><td>:</td><td>{{job.CreatedTime}}</td></tr>
+            <tr><td><b>Expected Delivery Date</b></td><td>:</td><td>{{job.EstimatedCompletionDate}}</td></tr>
+        </table>
+        <hr><hr>
+        <h6>Customer Details</6>
+            <table border="0" cellspacing="0">
+                <tr><td><b>Name</b></td><td>:</td><td>{{job.customerName}}</td></tr>
+                <tr><td><b>Address</b></td><td>:</td><td>{{job.customerAddress}}</td></tr>
+                <tr><td><b>Mobile No.</b></td><td>:</td><td>{{job.customerMobileNumber}}</td></tr>
+            </table>
+        <hr>
+        <hr>
+        <Textarea rows="30" border="1" style="border-radius:0">
+            
+        A Terms and Conditions agreement acts as legal contracts between you (the company) who has the website or mobile app, and the user who accesses your website/app.
+
+Having a Terms and Conditions agreement is completely optional. No laws require you to have one. Not even the super-strict and wide-reaching General Data Protection Regulation (GDPR).
+
+Your Terms and Conditions agreement will be uniquely yours. While some clauses are standard and commonly seen in pretty much every Terms and Conditions agreement, it's up to you to set the rules and guidelines that the user must agree to.
+
+You can think of your Terms and Conditions agreement as the legal agreement where you maintain your rights to exclude users from your app in the event that they abuse your app, where you maintain your legal rights against potential app abusers, and so on.
+
+Terms and Conditions agreements are also known as Terms of Service or Terms of Use agreements. These terms are interchangeable, practically speaking.
+
+
+            </Textarea>
+        
+        
+        
+        
+        <!--{{sp.logo}}
+        {{sp.logo.url}}-->
+       
+    </body>
+</html>

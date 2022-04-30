@@ -1,0 +1,22 @@
+{%extends 'base.html'%}
+{% block title %}Home{% endblock title %}
+{% block body %}
+<div class="row">
+    <div class="col-3">
+        <div class="card text-white bg-light mb-3" style="max-width: 18rem;border-radius:0; height: 10rem;">
+        <div class="card-body">
+            <h5 class="card-title"><a class="btn btn-primary" style="border-radius:0" href="{% url 'create_job'%}">Create Job</a></h5>
+        </div>
+        </div>
+    </div>
+    <div class="col-3">
+        <div class="card text-white bg-light mb-3" style="max-width: 18rem;border-radius:0; height: 10rem;">
+        <div class="card-body">
+            <h5 class="card-title"><a class="btn btn-primary" style="border-radius:0" href="{% url 'showjobs'%}">View Jobs</a></h5>
+        </div>
+        </div>
+    </div>
+    
+
+
+{% endblock body %}

@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block Title %}Jobs{% endblock Title %}
+{% block body %}
+
+<a href="{%url 'showjobs'%}">Back</a>
+
+    {%if update %}
+    <h4>Update Job</h4>
+    {%else%}
+    <h4>Create a Job</h4>
+    {%endif%}
+    <div class="form-control">
+        <form method="post">
+        {% csrf_token %}
+       
+            {{jobform.as_table}}
+                {% if update %}
+                <input type="submit" value="Update Job" class="btn btn-primary">
+                {%else%}
+                <input type="submit" value="Create JOB" class="btn btn-primary">
+                {% endif %}
+        
+        </form>
+    </div>
+    
+
+{% endblock body %}
