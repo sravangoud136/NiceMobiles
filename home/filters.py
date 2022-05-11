@@ -7,6 +7,6 @@ class JobFilter(django_filters.FilterSet):
     class Meta:
         model=Job
         ################################fields='__all__'
-        fields=['id','jobTitle','jobStatus','jobReferenceNumber']
+        fields=['id','jobTitle','jobStatus']
         
         

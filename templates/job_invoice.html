@@ -2,15 +2,21 @@
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!<![endif]-->
 <html>
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>{{job.jobReferenceNumber}}</title>
+        <title>{{job.id}}</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="">
+        <style>
+            table {
+                width: 100%;
+                border-width: thin;
+              }
+        </style>
     </head>
     <body>
         <!--[if lt IE 7]>
@@ -18,37 +24,81 @@
         <![endif]-->
         
         {%load static%}
-        <h5> Invoice Number: {{job.jobReferenceNumber}}</h5>
-        <hr>
-        <table border="0" cellspacing="0">
-            <tr><td><b>Job Title</b></td><td>:</td><td>{{job.jobTitle}}</td></tr>
-            <tr><td><b>Summary</b></td><td>:</td><td>{{job.jobDescription}}</td></tr>
-            <tr><td><b>Created</b></td><td>:</td><td>{{job.CreatedTime}}</td></tr>
-            <tr><td><b>Expected Delivery Date</b></td><td>:</td><td>{{job.EstimatedCompletionDate}}</td></tr>
+        <table border="1" align="center" cellspacing="0" cellpadding="2">
+        <tr>
+            <td><img src="{{owner.logo.path}}" width=300 height=100></td>
+            <td align="center"><h5> Invoice Number: {{job.id}}</h5></td>
+            <td><img src="{{job.barcode.path}}" width=300 height=75></td>
+            {% comment %} <td><img src="{{asc.logo.path}}" width=300 height=50></td> {% endcomment %}
+
+        </tr>
         </table>
-        <hr><hr>
-        <h6>Customer Details</6>
-            <table border="0" cellspacing="0">
-                <tr><td><b>Name</b></td><td>:</td><td>{{job.customerName}}</td></tr>
-                <tr><td><b>Address</b></td><td>:</td><td>{{job.customerAddress}}</td></tr>
-                <tr><td><b>Mobile No.</b></td><td>:</td><td>{{job.customerMobileNumber}}</td></tr>
-            </table>
-        <hr>
-        <hr>
-        <Textarea rows="30" border="1" style="border-radius:0">
+        <table border="1" cellspacing="0" cellpadding="2">
+        
+        <tr><td  colspan="2" align="center"><b>ASC DETAILS</b></td></tr>
+        <tr><td><b>Authorized Service Center</b></td><td>{{asc.authorized_service_center_name}}</td></tr>
+        <tr><td><b>Contact Number</b></td><td>{{asc.contact_num}}</td></tr>
+        <tr><td><b>Service Center Address</b></td><td>{{asc.Address}}</td></tr>
+        </table>
+        
+        <table border="1" cellspacing="0" cellpadding="2" style="border-width: thin;">
+        <tr><td  colspan="2" align="center"><b>JOB DETAILS</b></td></tr>
+            <tr><td><b>Job Title</b></td><td>{{job.jobTitle}}</td></tr>
+            <tr><td><b>Summary</b></td><td>{{job.jobDescription}}</td></tr>
+            <tr><td><b>Created</b></td><td>{{job.CreatedTime}}</td></tr>
+            <tr><td><b>Expected Delivery Date</b></td><td>{{job.EstimatedCompletionDate}}</td></tr>
+
+            <tr><td  colspan="2" align="center"><b>CUSTOMER DETAILS</b></td></tr>
+              
+                    <tr><td><b>Name</b></td><td>{{job.customerName}}</td></tr>
+                    <tr><td><b>Address</b></td><td>{{job.customerAddress}}</td></tr>
+                    <tr><td><b>Mobile No.</b></td><td>{{job.customerMobileNumber}}</td></tr>
             
-        A Terms and Conditions agreement acts as legal contracts between you (the company) who has the website or mobile app, and the user who accesses your website/app.
+            <tr><td  colspan="2" align="center"><b>HANDSET INFORMATION</b></td></tr>
+              
+                    <tr><td><b>Model Name</b></td><td>{{job.model_name}}</td></tr>
+                    <tr><td><b>IMEI1</b></td><td>{{job.imei_num1}}</td></tr>
+                    <tr><td><b>IMEI2</b></td><td>{{job.imei_num2}}</td></tr>
+                    {% comment %} <tr><td><b>POP Date</b></td><td>{{job.pop_date}}</td></tr> {% endcomment %}
+                    <tr><td><b>Purchased From</b></td><td>{{job.purchased_from}}</td></tr>
+                    <tr><td><b>Warranty Status</b></td><td>{{job.warranty_status}}</td></tr>
+                    <tr><td><b>Condition of Set</b></td><td>{{job.condition_of_set}}</td></tr>
+                    <tr><td><b>Accessories Submitted</b></td><td>{{job.accessories_sbumitted}}</td></tr>
+                    <tr><td><b>Estimated Cost</b></td><td>{{job.EstimatedCost}}</td></tr>
 
-Having a Terms and Conditions agreement is completely optional. No laws require you to have one. Not even the super-strict and wide-reaching General Data Protection Regulation (GDPR).
+                    <tr></tr>
+                    <tr><td  colspan="2"><b>Terms &amp; Conditions</b>
+                    
+        <ol>
+            <li>The customers must receive the job sheet when the product is given for non-warranty repair & the contents of the Job sheet must be verified by the customer.</li>
 
-Your Terms and Conditions agreement will be uniquely yours. While some clauses are standard and commonly seen in pretty much every Terms and Conditions agreement, it's up to you to set the rules and guidelines that the user must agree to.
+<li>The customer must produce the original job sheet at the time of taking the delivery. We reserve the right to refuse delivery upon non-production of the original job sheet.</li>
 
-You can think of your Terms and Conditions agreement as the legal agreement where you maintain your rights to exclude users from your app in the event that they abuse your app, where you maintain your legal rights against potential app abusers, and so on.
+<li> We shall not be obliged to undertake repair of products found liquid damaged, physical damage or already attempted for repair by any other repairer.</li>
 
-Terms and Conditions agreements are also known as Terms of Service or Terms of Use agreements. These terms are interchangeable, practically speaking.
+<li>The estimate given at the time of acceptance of the product for repairs are provisional and may vary after detailed inspection. We will proceed further only after taking approval from the customer.</li>
 
+<li>In the event of handset received with condition where in physical damage, liquid damage or repair already attempted by other repairer, we will not be liable for any damage even under testing before repair or after repair.</li>
 
-            </Textarea>
+<li>We shall make all efforts to ensure that the product is repaired within 7 (Seven) days from the date of receipt of faulty product. At times however, due to availability/shortage of critical spare parts or complicated the repair turnaround time may take longer than the indicated time for delivery in the job sheet. We will not be responsible for any loss/losses whatsoever in the event of the delay in the repair for such aforementioned reasons.</li>
+
+<li>In the event the delivery is taken by the customer from us within 30 days from the date of written intimation by us, we reserve the right to auction the product to recover the repair and auction charges from the customer.</li>
+
+<li>The above terms &amp; conditions supersedes and terminates all prior representation; discussions, undertaking, and end user agreements, communications or advertising relating to the products and services, written or oral until and unless otherwise agreed in writing by us.</li>
+
+<li>We are not liable for any memory, setting and data loss during the repair.</li>
+
+<li>Spare once replaced with new, old spare will not be given back to customers. By accepting the job sheet, it is deemed that the customer agrees to all the terms and conditions mentioned in the agreement in the job sheet.</li>
+        </ol>
+        </table>
+        <table border="1" cellspacing="0" cellpadding="20" >
+            <tr rowspan="2"><td align="center"  valign="bottom"><b>Customer Signature with Full Name</b></td><td align="center"  valign="bottom"><b>ASC Signature with Stamp</b></td><td align="center"  valign="bottom"><b>Customer Signature (@Delivery) </b></td></tr>
+        </table>
+        <table border="1" cellspacing="0" cellpadding="10" >
+            <tr rowspan="2"><td align="left"  valign="bottom"><b>Date: ________________________</b></td><td align="right"  valign="bottom"><b>Place:________________________</b></td></tr>
+        </table>
+       
+            
         
         
         

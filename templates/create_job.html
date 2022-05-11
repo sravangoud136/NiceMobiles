@@ -1,27 +1,58 @@
 {% extends 'base.html' %}
+
 {% block Title %}Jobs{% endblock Title %}
 {% block body %}
 
-<a href="{%url 'showjobs'%}">Back</a>
+
+<a href="{%url 'showjobs'%}">Back</a> 
 
     {%if update %}
     <h4>Update Job</h4>
     {%else%}
     <h4>Create a Job</h4>
     {%endif%}
-    <div class="form-control">
+    
         <form method="post">
+            
         {% csrf_token %}
-       
-            {{jobform.as_table}}
+        
                 {% if update %}
+                {% for field in  jobform%}
+                    <div  class="form-control" style="border-radius:0;max-width:600px;align:center">
+                        {% if field.name == "jobStatus" %}
+                        
+                            {{field.name}}{{field}}
+                            <div class="comment" id="comment">
+                                Status Change comment: <input type="text" class="form-control"  name="comment">
+                            </div>
+                        
+                        {% else %}
+                        {{field.name}}{{field}}
+                        {% endif %}
+                        
+                    </div>
+                {% endfor %}
+                
                 <input type="submit" value="Update Job" class="btn btn-primary">
                 {%else%}
+                <div class="form-control" style="border-radius:0;max-width:800px;align:center">
+                {{jobform}}
+                </div>
                 <input type="submit" value="Create JOB" class="btn btn-primary">
                 {% endif %}
+
+            
         
         </form>
-    </div>
     
+        <script>
+            $(function(){
+                $("#comment").hide();
+                $("#id_jobStatus").on('change', function(){
+                    $("#comment").show();
+                })
+               });
+               
+        </script>
 
 {% endblock body %}

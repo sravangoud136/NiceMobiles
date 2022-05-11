@@ -1,0 +1,14 @@
+{% comment %} {% extends 'base.html' %}
+{% block title %}ASC Login{% endblock title %}
+{% block body %}
+<div class="container">
+
+    <form method="post" action="">
+        {% csrf_token %}
+        <table>
+        {{form.as_table}}
+        </table>
+        <input type="submit" class="btn btn-primary" value="Login"/>
+    </form>
+</div>
+{% endblock body %} {% endcomment %}

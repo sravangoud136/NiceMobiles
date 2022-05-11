@@ -1,11 +1,14 @@
 {% extends 'base.html' %}
 {% block Title %}View Job{% endblock Title %}
 {% block body %}
+<a href="{%url 'showjobs'%}" style="text-decoration: none">&lt;&lt;Back</a>
+<br>
+<br>
 <tr><a class="btn btn-primary" href="{%url 'update_job' job.id%}">Edit</a></tr>
 <hr>
     <table class="table">
     <tr><td><b>Job Id: </b>{{job.id}}</td></tr>
-    <tr><td><b>Job Reference Number: </b>{{job.id}}</td></tr>
+    <!--<tr><td><b>Job Reference Number: </b>{{job.jobReferenceNumber}}</td></tr>-->
     <tr><td><b>Job Description: </b>{{job.jobDescription}}</td></tr>
     <tr><td><b>Job Status: </b>{{job.jobStatus}}</td></tr>
     <tr><td><b>Customer Name: </b>{{job.customerName}}</td></tr>
@@ -13,5 +16,18 @@
     <tr><td><b>Estimated Completion Date: </b>{{job.EstimatedCompletionDate}}</td></tr>
     </table>
 
+ <hr>
+ <b>Version History</b>
+ <hr>  
+    {% if history != None %}
+    {% for i in history %}
+    <li>{{i.updated_time}}:{{i.comment}}</li>
+    {% endfor %}
+    {%else%}
+    <p>No Status Changes recorded in the past</p>
+
+    {% endif %}
+    
+   
 {% endblock body %}
 

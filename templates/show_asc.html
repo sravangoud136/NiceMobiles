@@ -1,0 +1,9 @@
+{%extends 'base.html'%}
+{% block title %}ASC List{% endblock title %}
+{% block body %}
+{% for i in object_list %}
+<div style="text-decoration: none">
+<a href="{% url 'view_asc_detail' i.id %}">{{i.name}}</a>
+</div>
+{% endfor %}
+{% endblock body %}
