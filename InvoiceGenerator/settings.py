@@ -77,26 +77,26 @@ WSGI_APPLICATION = 'InvoiceGenerator.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
 # import dj_database_url
 # DATABASES['default'] = dj_database_url.config(conn_max_age=600)
 
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME':'d38vlj8brs1l9f',
-#         'HOST':'ec2-3-229-11-55.compute-1.amazonaws.com',
-#         'PORT':5432,
-#         'USER':'ndlsoqjpyolgus',
-#         'PASSWORD':'fbf76f94a0fcf458c2cbc317816655b79effcb87ce7681134a6b1fca5b682fd8'
-#     }
-# }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME':'d38vlj8brs1l9f',
+        'HOST':'ec2-3-229-11-55.compute-1.amazonaws.com',
+        'PORT':5432,
+        'USER':'ndlsoqjpyolgus',
+        'PASSWORD':'fbf76f94a0fcf458c2cbc317816655b79effcb87ce7681134a6b1fca5b682fd8'
+    }
+}
 
 
 
