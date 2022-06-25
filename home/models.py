@@ -71,13 +71,13 @@ class Job(models.Model):
     
     
 class ServiceProvider(models.Model):
-    user= models.OneToOneField(User,on_delete=models.CASCADE,default=1)
-    contact_num=models.CharField(max_length=14)
-    authorized_service_center_name=models.CharField(max_length=200)
+    user= models.OneToOneField(User,on_delete=models.CASCADE,default=None)
+    contact_num=models.CharField(max_length=14,null=True,blank=True)
+    authorized_service_center_name=models.CharField(max_length=200,null=True,blank=True)
     email_id=models.EmailField(null=True,blank=True)
     Address=models.TextField(null=True, blank=True)
     description=models.TextField(null=True, blank=True)
-    logo=models.ImageField()
+    logo=models.ImageField(null=True, blank=True)
     def __str__(self):
         return str(self.user.username)
     
