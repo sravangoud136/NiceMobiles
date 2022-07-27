@@ -75,7 +75,12 @@ def create_job(request):
         if jobdata.is_valid():
             jobdata.instance.author=request.user
             jobdata.save()
-        return redirect('showjobs')
+            return redirect('showjobs')
+        else:
+            print("this path")
+            return render(request,"create_job.html",{"jobform":jobdata})
+           
+         #jobform=forms.JobForm()
     context={
     "jobform":jobform
     }

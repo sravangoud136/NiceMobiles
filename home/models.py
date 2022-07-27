@@ -21,7 +21,7 @@ class Job(models.Model):
         (CLOSED, 'Closed'),
         (DELIVERED, 'Delivered')
     ]
-    # id = models.BigIntegerField(primary_key = True)
+    #id = models.BigIntegerField(primary_key = True)
     warranty_choices=[('In Warranty','In Warranty') , ('Out Warranty','Out warranty'), ('Return Warranty','Return warranty'), ('No Warranty','No warranty'),]
     part_replacement_warranty_choices=[('In Warranty','In Warranty') , ('Out Warranty','Out warranty'),]
     

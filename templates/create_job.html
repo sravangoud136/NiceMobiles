@@ -17,6 +17,11 @@
         {% csrf_token %}
         
                 {% if update %}
+                {% if jobform.errors %}
+                <div class="alert alert-danger">
+                    {{ jobform.errors }}
+                </div>
+                {% endif %}
                 {% for field in  jobform%}
                     <div  class="form-control" style="border-radius:0;max-width:600px;align:center">
                         {% if field.name == "jobStatus" %}
@@ -36,6 +41,11 @@
                 <input type="submit" value="Update Job" class="btn btn-primary">
                 {%else%}
                 <div class="form-control" style="border-radius:0;max-width:800px;align:center">
+                    {% if jobform.errors %}
+                    <div class="alert alert-danger">
+                        {{ jobform.errors }}
+                    </div>
+                    {% endif %}
                 {{jobform}}
                 </div>
                 <input type="submit" value="Create JOB" class="btn btn-primary">
