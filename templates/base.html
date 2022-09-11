@@ -12,31 +12,25 @@
     <title>NiceMobiles | {% block Title %}Home{% endblock Title %}</title>
   </head>
   <body>
-    
-    <nav class="navbar navbar-light" style="background-color:dodgerblue;">
+    <nav class="navbar navbar-light" style="background-color:#343f4d">
       <div class="container">
         <a class="navbar-brand" href="{% url 'index'%}" style="color:White">
-          {% comment %} {%load static %} {% endcomment %}
-          {% comment %} <img src="{% static 'nice logo.jpg' %}"> {% endcomment %}
+          {%load static %}
+          <img src="{% static 'nice logo.jpg' %}" width="40" height="40">
           <b>Nice Private Limited</b>
         </a> 
         <div>
-        <a class="btn btn-primary" style="border-radius:0" href="{% url 'create_job'%}">Create Job</a>
+        {% comment %} <a class="btn btn-primary" style="border-radius:0" href="{% url 'create_job'%}">Create Job</a>
         <a class="btn btn-warning" style="border-radius:0" href="{% url 'showjobs'%}">View Jobs</a>
-        </div>   
-        <a href="{% url 'index'%}">Home</a>
+        </div>    {% endcomment %}
+       
           <ul class="navbar-nav mr-auto">
-            
-            <li class="nav-item active">
+            <li class="nav-item active" style="color: #fff; font-weight: bold">
                 {% if user.is_authenticated %}
                 {{user.username}}<a class="nav-link" href="{%url 'logout' %}">Logout</a>
                 {% else %}
                   <a class="nav-link" href="{%url 'login' %}">Login</a>
-                {% endif %}
-                
-            
-                
-              
+                {% endif %} 
             </li>
           </ul>
        

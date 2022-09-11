@@ -8,11 +8,11 @@ class JobForm(forms.ModelForm):
         widgets ={
             'customerName':forms.TextInput(attrs={'class':'form-control'}),
             'customerAddress':forms.Textarea(attrs={'class':'form-control','required':False}),
-            'customerMobileNumber':forms.TextInput(attrs={'class':'form-control'}),
+            'customerMobileNumber':forms.TextInput(attrs={'class':'form-control','placeholder':'Must be 10 Digits Exactly'}),
             'jobTitle':forms.TextInput(attrs={'class':'form-control'}),
             'jobDescription':forms.Textarea(attrs={'class':'form-control','required':False}),
             'jobStatus':forms.Select(attrs={'class':'form-control','onchange':'myFunction(this.value);'}),
-            'EstimatedCompletionDate':forms.DateInput(attrs={'class':'form-control','required':False}),
+            'EstimatedCompletionDate':forms.DateInput(attrs={'class':'form-control','required':False,'placeholder':'DD/MM/YYYY'}),
             'device_type':forms.Select(attrs={'class':'form-control','required':False}),
             'brand':forms.TextInput(attrs={'class':'form-control'}),
             'model_name': forms.TextInput(attrs={'class':'form-control'}),
