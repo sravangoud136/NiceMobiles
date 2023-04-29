@@ -25,15 +25,20 @@
         
         {%load static%}
         <table border="1" align="center" cellspacing="0" cellpadding="2">
-        <tr>
-            <td><img src="{{owner.logo.path}}" width=300 height=100></td>
-            <td align="center"><h5> Invoice Number: {{job.id}}</h5></td>
-            <td><img src="{{job.barcode.path}}" width=300 height=75></td>
+        <tr style="border:0">
+            <td><img src="{{owner.logo.path}}" width="246" height="62" border="0"></td>
+            
+            <td colspan="2" align="center"><span style="font-size:24px;text-align:center;font-weight:bold;">NICE PRIVATE LIMITED</span></td>
+            <td><img src="{{job.barcode.path}}" width="300" height="65"></td>
+
             {% comment %} <td><img src="{{asc.logo.path}}" width=300 height=50></td> {% endcomment %}
 
         </tr>
         </table>
         <table border="1" cellspacing="0" cellpadding="2">
+        <tr>
+            <td colspan="2" align="center"><h5> Invoice Number: {{job.id}}</h5></td>
+        </tr>
         
         <tr><td  colspan="2" align="center"><b>ASC DETAILS</b></td></tr>
         <tr><td><b>Authorized Service Center</b></td><td>{{asc.authorized_service_center_name}}</td></tr>

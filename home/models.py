@@ -1,4 +1,6 @@
 from django.db import models
+import datetime 
+from django.core.exceptions import ValidationError
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
@@ -8,8 +10,14 @@ import barcode
 from barcode.writer import ImageWriter
 from io import BytesIO
 from django.core.files import File
+from datetime import date
 
 # Create your models here.
+
+def only_futuredate(value):
+    if value<date.today():
+        raise ValidationError("Completion Date Cannot be from the Past")
+    
 class Job(models.Model):
     REGISTERED = "REGISTERED"
     IN_PROGRESS="IN_PROGRESS"
@@ -37,7 +45,7 @@ class Job(models.Model):
     customerName=models.CharField(max_length=256,null=True)
     customerAddress=models.CharField(max_length=500,null=True)
     customerMobileNumber=models.CharField(max_length=10,null=True)
-    EstimatedCompletionDate=models.DateField(default=None,null=True)
+    EstimatedCompletionDate=models.DateField(default=None,null=True,validators=[only_futuredate])
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     
     device_type = models.CharField(max_length=20,choices=device_choices, default='Mobile')   
@@ -56,13 +64,30 @@ class Job(models.Model):
     barcode=models.ImageField(upload_to="media",blank=True,null=True)
     
     
-    def save(self, *args, **kwargs):
+    def clean(self):
+        w=["REGISTERED","IN_PROGRESS","CLOSED","DELIVERED"]
+        new_status=self.jobStatus
+        if Job.objects.filter(id=self.id).exists():
+            curr_status=Job.objects.get(id=self.id).jobStatus
+            if w.index(new_status)!=w.index(curr_status)+1 and (not w.index(new_status)==w.index(curr_status)):
+                raise ValidationError('you cannot move the status from '+curr_status+' to '+new_status)
+                
+            
+            
+            
+    
+    def save(self, *args, **kwargs):      
+            
+        self.full_clean()
         EAN = barcode.get_barcode_class('ean13')
         ean = EAN(f'91{self.customerMobileNumber}', writer=ImageWriter())
         buffer = BytesIO()
         ean.write(buffer)
         self.barcode.save(f'{self.customerMobileNumber}_{self.customerName}.png', File(buffer), save=False)
         return super().save(*args, **kwargs)
+            
+        
+            
     
     
     

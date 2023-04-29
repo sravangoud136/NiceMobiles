@@ -96,15 +96,9 @@ def update_job(request, job_id):
     
     curr_status=job_sel.jobStatus
     new_status=request.POST.get('jobStatus')
-    #storing version information
+    
    
     
-    
-    
-    
-    # print(curr_status)
-    # print(new_status)
-    # print(comment)
     if jobForm.is_valid():    
        jobForm.save()
        if curr_status != new_status: 

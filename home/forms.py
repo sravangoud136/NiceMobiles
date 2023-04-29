@@ -12,7 +12,7 @@ class JobForm(forms.ModelForm):
             'jobTitle':forms.TextInput(attrs={'class':'form-control'}),
             'jobDescription':forms.Textarea(attrs={'class':'form-control','required':False}),
             'jobStatus':forms.Select(attrs={'class':'form-control','onchange':'myFunction(this.value);'}),
-            'EstimatedCompletionDate':forms.DateInput(attrs={'class':'form-control','required':False,'placeholder':'DD/MM/YYYY'}),
+            'EstimatedCompletionDate':forms.DateInput(attrs={'class':'form-control','required':False,'type':'date'}),
             'device_type':forms.Select(attrs={'class':'form-control','required':False}),
             'brand':forms.TextInput(attrs={'class':'form-control'}),
             'model_name': forms.TextInput(attrs={'class':'form-control'}),
@@ -34,6 +34,7 @@ class JobForm(forms.ModelForm):
             
             
         }
+        
         
 class HistoryForm(forms.ModelForm):
     class Meta:
