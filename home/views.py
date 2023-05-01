@@ -3,7 +3,6 @@ from django.http import HttpResponse,HttpResponseRedirect
 from home import models,forms
 from django.http import HttpResponse
 from django.template.loader import get_template
-from xhtml2pdf import pisa
 from django.views.generic import ListView,DetailView,CreateView,UpdateView,DeleteView
 from .models import ServiceProvider
 from .filters import JobFilter
@@ -14,8 +13,6 @@ from django.contrib.auth.views import LoginView,LogoutView
 import pdfkit
 
 
-# from barcode import EAN13
-# from barcode.writer import ImageWriter
   
 
 
@@ -26,41 +23,7 @@ def asc_login(request):
     return render(request,"asc_login.html",{"form":asc_login_form})
 def asc_logout(request):
     pass
-# def job_render_pdf_view(request,job_id):
-#     # number = '22' 
-#     # invoice_bar_code = EAN13(number,writer=ImageWriter())
-#     # invoice_bar_code.save("new_code")
-#     job_sel = models.Job.objects.get(id = job_id)
-#     adminuser=models.User.objects.get(username="admin")
-    
-#     asc=models.ServiceProvider.objects.get(user=request.user)
-#     owner=models.ServiceProvider.objects.get(user=adminuser)
-    
-    
-#     template_path = 'job_invoice.html'
-#     context = {'job':job_sel,'current_user':request.user,'asc':asc,'owner':owner}
-#     # Create a Django response object, and specify content_type as pdf
-#     response = HttpResponse(content_type='application/pdf')
-#     #response['Content-Disposition'] = 'attachment; filename="'+job_sel.id+'.pdf"'
-#     response['Content-Disposition'] = 'attachment; filename="'+str(job_sel.id)+"_"+str(job_sel.customerName)+'.pdf"'
-    
-#     #response['Content-Disposition'] = 'attachment; filename="report.pdf"'
-#     # find the template and render it.
-#     template = get_template(template_path)
-#     html = template.render(context)
-
-#     # create a pdf
-#     pisa_status = pisa.CreatePDF(
-#        html, dest=response)
-#     # if error then show some funny view
-#     if pisa_status.err:
-#        return HttpResponse('We had some errors <pre>' + html + '</pre>')
-#     return response
-
 def job_render_pdf_view(request,job_id):
-    # number = '22' 
-    # invoice_bar_code = EAN13(number,writer=ImageWriter())
-    # invoice_bar_code.save("new_code")
     
     job_sel = models.Job.objects.get(id = job_id)
     adminuser=models.User.objects.get(username="admin")
@@ -71,28 +34,15 @@ def job_render_pdf_view(request,job_id):
     
     template_path = 'job_invoice.html'
     context = {'job':job_sel,'current_user':request.user,'asc':asc,'owner':owner}
-    # Create a Django response object, and specify content_type as pdf
-    #response = HttpResponse(content_type='application/pdf')
-    #response['Content-Disposition'] = 'attachment; filename="'+job_sel.id+'.pdf"'
-    #response['Content-Disposition'] = 'attachment; filename="'+str(job_sel.id)+"_"+str(job_sel.customerName)+'.pdf"'
     
     filename=str(job_sel.id)+"_"+str(job_sel.customerName)+".pdf"
-    #response['Content-Disposition'] = 'attachment; filename="report.pdf"'
-    # find the template and render it.
     template = get_template(template_path)
     html = template.render(context)
     pdf = pdfkit.from_string(html, False)
     response = HttpResponse(pdf, content_type='application/pdf')
     response['Content-Disposition'] = 'attachment; filename="' + filename + '"'
     return response
-   
-    # create a pdf
-    #pisa_status = pisa.CreatePDF(
-      # html, dest=response)
-    # if error then show some funny view
-    #if pisa_status.err:
-      # return HttpResponse('We had some errors <pre>' + html + '</pre>')
-    #return response  
+    
 
 @login_required(login_url='login')
 def index(request):
