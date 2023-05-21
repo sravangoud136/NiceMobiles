@@ -24,9 +24,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = '6k2i9)j1s=yk2964eg&#in%#&(l+203a_zcwu47nkqs+o@zjdx'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG =False
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['www.onenicemobiles.com','onenicemobiles.com','89.116.179.10']
 
 
 # Application definition
@@ -58,7 +58,7 @@ ROOT_URLCONF = 'InvoiceGenerator.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['templates'],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -137,8 +137,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 
-STATIC_URL = '/staticfiles/'
-STATIC_ROOT=os.path.join(BASE_DIR,"staticfiles")
+STATIC_URL = '/static/'
+STATIC_ROOT=os.path.join(BASE_DIR,"static")
 #STATICFILES_DIRS=[os.path.join(BASE_DIR,"staticfiles"),]
 MEDIA_ROOT=os.path.join(BASE_DIR,"media")
 LOGIN_REDIRECT_URL="index"
