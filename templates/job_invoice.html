@@ -35,9 +35,9 @@
 
         </tr>
         </table>
-        <table border="1" cellspacing="0" cellpadding="2">
+        <table border="1" cellspacing="0" cellpadding="0">
         <tr>
-            <td colspan="2" align="center"><h5> Invoice Number: {{job.id}}</h5></td>
+            <td colspan="2" align="left"><b>#Invoice: {{job.id}}</b></td>
         </tr>
         
         <tr><td  colspan="2" align="center"><b>ASC DETAILS</b></td></tr>
@@ -46,7 +46,7 @@
         <tr><td><b>Service Center Address</b></td><td>{{asc.Address}}</td></tr>
         </table>
         
-        <table border="1" cellspacing="0" cellpadding="2" style="border-width: thin;">
+        <table border="1" cellspacing="0" cellpadding="1" style="border-width: thin;">
         <tr><td  colspan="2" align="center"><b>JOB DETAILS</b></td></tr>
             <tr><td><b>Job Title</b></td><td>{{job.jobTitle}}</td></tr>
             <tr><td><b>Summary</b></td><td>{{job.jobDescription}}</td></tr>

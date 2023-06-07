@@ -11,8 +11,8 @@ from django.core.paginator import Paginator
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import LoginView,LogoutView
 import pdfkit
-
-
+import os
+from InvoiceGenerator import settings
   
 
 
@@ -38,7 +38,8 @@ def job_render_pdf_view(request,job_id):
     filename=str(job_sel.id)+"_"+str(job_sel.customerName)+".pdf"
     template = get_template(template_path)
     html = template.render(context)
-    pdf = pdfkit.from_string(html, False)
+    #pdf_path = os.path.join(settings.BASE_DIR, 'staticfiles', 'pdf', filename)
+    pdf = pdfkit.from_string(html,False,options={"enable-local-file-access": ""})
     response = HttpResponse(pdf, content_type='application/pdf')
     response['Content-Disposition'] = 'attachment; filename="' + filename + '"'
     return response
